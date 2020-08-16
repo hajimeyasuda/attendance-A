@@ -6,9 +6,14 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--shimパーシャルで、作成したファイルを探して、その内容を評価して結果をビューに挿入する-->
+    <%= render 'layouts/shim' %>
   </head>
-
   <body>
-    <%= yield %>
+    <!--headerパーシャルで-->
+    <%= render 'layouts/header' %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
