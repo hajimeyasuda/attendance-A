@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "作成しました。"
-      redirect_to user_url(@user)
+      redirect_to @user
     else
       render :new
     end
