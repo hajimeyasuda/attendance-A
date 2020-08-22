@@ -5,7 +5,8 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      redirect_to login_url
+      log_in user
+      redirect_to user_url(user)
     else
       flash.now[:danger] = "認証に失敗しました。"
       render :new
