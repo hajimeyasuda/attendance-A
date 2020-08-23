@@ -6,6 +6,13 @@ module SessionsHelper
   end
   # この定義でログインをしてcreateアクション、そしてリダイレクトする準備完了
   
+  # session @current_userを破棄する
+  def log_out
+    session.delete(:user_id)
+    @current_user = nil
+  end
+    
+  
   def current_user
     if session[:user_id]
       @current_user ||= User.find_by(id: session[:user_id])
