@@ -38,10 +38,12 @@ class User < ApplicationRecord
   
   # トークンがダイジェストと一致すればtrueを返す。
   def authenticated?(remember_token)
+    # ダイジェストが存在しない場合はfalseを返して終了する。
+    return fales if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
   
-  # ログイン情報の破棄。
+  # ログイン情報の破棄。（nilに更新）
   def forget
     update_attribute(:remember_digest, nil)
   end
