@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       log_in user
       # 【条件式】？ 【真（true）の場合処理実行】: 【偽（false）の場合処理実行】
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to user
+      redirect_back_or user
     else
       flash.now[:danger] = "認証に失敗しました。"
       render :new
