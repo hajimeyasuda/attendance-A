@@ -10,13 +10,14 @@
         <%= link_to "▶️", user_path(date: @first_day.next_month), class: "btn btn-info" %>
       </td> 
       <td>指定勤務時間 : <%= format_basic_info(@user.work_time) %></td>
-      <td colspan = "2">基本時間 : <%= format_basic_info(@user.basic_time) %></td>
+      <td colspan = "3">基本時間 : <%= format_basic_info(@user.basic_time) %></td>
       <td>初日 : <%= l(@first_day, format: :short) %></td>
     </tr>
     <tr>
       <td>所属 : <%= @user.department.present? ? @user.department : "未所属" %></td>
       <td>名前 : <%= @user.name %></td>
-      <td>コード&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td>コード</td>
+      <td></td>
       <td>出勤日数 : <%= @worked_sum %>日</td>
       <td>締め : <%= l(@last_day, format: :short) %></td>
     </tr>
@@ -68,16 +69,17 @@
           <td class="<%= css_class %>">
             <%= $days_of_the_week[day.worked_on.wday] %>
           </td>
-          <td><%= l(day.started_at, format: :time) if day.started_at.present? %></td>
-          <td><%= %></td>
-          <td>
+          <td><%= l(day.started_at, format: :hour) if day.started_at.present? %></td>
+          <td><%= l(day.started_at, format: :min) if day.started_at.present? %></td>
+          
+          <td> <!--繰り返し処理で表示している時間と本日が同じかつ出勤時間がからだったら、出勤ボタンを表示-->
             <% if btn_text = attendance_state(day) %>
               <%= link_to "#{btn_text}", user_attendance_path(@user, day), method: :patch, class: "btn btn-primary btn-attendance" %>
             <% end %>
           </td>
           
-          <td><%= l(day.finished_at, format: :time) if day.finished_at.present? %></td>
-          <td></td>
+          <td><%= l(day.finished_at, format: :hour) if day.finished_at.present? %></td>
+          <td><%= l(day.finished_at, format: :min) if day.finished_at.present? %></td>
           <td></td>
           <td>
             <% if day.started_at.present? && day.finished_at.present? %>
