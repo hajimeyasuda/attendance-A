@@ -6,9 +6,11 @@ class UsersController < ApplicationController
   before_action :set_one_month, only: :show
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page]).search(params[:search])
+    # @users = User.all
+    # @users = @users.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
   end
-
+    
 
   def show
     @worked_sum = @attendances.where.not(started_at: nil).count
@@ -72,5 +74,10 @@ class UsersController < ApplicationController
     def basic_info_params
       params.require(:user).permit(:department, :basic_time, :work_time)
     end
+    
+    def search
+    @users = User.search(params[:search])
+    end
+    
 end
 
