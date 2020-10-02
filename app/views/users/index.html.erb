@@ -1,6 +1,10 @@
 <% provide(:title, @title || 'All Users') %>
-<h1>ユーザー一覧</h1>
 
+<% if @users %>
+  <h1><%= 'ユーザー一覧' %></h1>
+  <% elsif search %>
+  <h1><%= '検索結果' %></h1>
+  <% end %>
 
  
   <div class="row container">
