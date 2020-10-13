@@ -55,7 +55,7 @@ class User < ApplicationRecord
   
   def self.search(search) # ここでのself.はUser.を意味する
     if search
-      where(['name LIKE ?', "%#{search}%"]) # nameの部分一致検索
+      where(['name LIKE ?', "%#{search}%"])# nameの部分一致検索
     else
       all
     end

@@ -10,4 +10,14 @@ module ApplicationHelper
       page_name + " | " + base_title # 文字を連結して返す
     end
   end
+  
+  def page_title(search = "")
+    base_title = "ユーザー一覧"
+    @title = "検索結果"
+    if params[:search]
+      @title  
+    else
+      base_title
+    end
+  end
 end
