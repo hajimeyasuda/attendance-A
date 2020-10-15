@@ -35,7 +35,12 @@ class AttendancesController < ApplicationController
     ActiveRecord::Base.transaction do # トランザクションを開始する。
       attendances_params.each do |id, item|
         attendance = Attendance.find(id)
-        attendance.update_attributes!(item)
+        if (attendance[:started_at] != "") && (attendance[:finished_at] == nil)            # 出社更新のみの更新拒否
+          flash[:danger] = "退勤時間が必要です。更新をキャンセルしました。"
+          redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return
+        else
+          attendance.update_attributes!(item)
+        end
       end
     end
     flash[:success] = "１ヶ月分の勤怠情報を更新しました。"
@@ -45,12 +50,16 @@ class AttendancesController < ApplicationController
     redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end
   
+  
+  
   private
   
     # １ヶ月分の勤怠情報を扱う。
     def attendances_params
       params.require(:user).permit(attendances: [:started_at, :finished_at, :note])[:attendances]
     end
+
+    
     
     # beforeフィルター
     

@@ -38,7 +38,7 @@ class User < ApplicationRecord
   # ハッシュ化されたトークン情報の代入とトークンダイジェストの更新をする。
   def remember
     self.remember_token = User.new_token
-    update_attribute(:remember_digest,User.digest(remember_token))
+    update_attribute(:remember_digest, User.digest(remember_token))
   end
   
   # トークンがダイジェストと一致すればtrueを返す。
