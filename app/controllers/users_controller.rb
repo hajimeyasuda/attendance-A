@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   before_action :set_one_month, only: :show
 
   def index
+    redirect_to(root_url) unless current_user.admin?
       @users = User.paginate(page: params[:page]).search(params[:search])
   end
   
