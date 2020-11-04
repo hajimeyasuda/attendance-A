@@ -33,15 +33,16 @@ class AttendancesController < ApplicationController
     ActiveRecord::Base.transaction do # トランザクションを開始する。
       attendances_params.each do |id, item|
         attendance = Attendance.find(id)
-        
-        if attendance[:started_at].nil? && item[:started_at].present?
-          flash[:danger] = "未入力からの修正はできません。"
-          redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return
-        elsif attendance[:finished_at].present? && item[:finished_at].nil?
-          flash[:danger] = "未入力からの修正はできません。"
-          redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return
-        else
-          attendance.update_attributes!(item)
+        unless Date.current == attendance.worked_on
+          if attendance[:started_at].nil? && item[:started_at].present?
+            flash[:danger] = "未入力からの修正はできません。"
+            redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return
+          elsif attendance[:finished_at].present? && item[:finished_at].nil?
+            flash[:danger] = "未入力からの修正はできません。"
+            redirect_to attendances_edit_one_month_user_url(date: params[:date]) and return
+          else
+            attendance.update_attributes!(item)
+          end
         end
       end
     end
