@@ -39,8 +39,9 @@
 <div>
   <table class="table table-bordered table-striped table-condensed table-hover" id="table-attendances">
     <thead>
-      <%= link_to "残業申請", "#", remote: true, class: "btn btn-info" %>
+
       <tr> <!--rawspan:縦結合、colspan:横結合-->
+        <th rowspan = "3">残業申請</th>
         <th rowspan = "3">日付</th>
         <th rowspan = "3">曜日</th>
         <th colspan = "8">【実績】</th>
@@ -81,6 +82,7 @@
           end
         %>
         <tr>
+          <td><%= link_to "残業申請", "#", remote: true, class: "btn btn-info" %></td>
           <td><%= l(day.worked_on, format: :short) %></td>
           <td class="<%= css_class %>">
             <%= $days_of_the_week[day.worked_on.wday] %>
@@ -104,6 +106,11 @@
             <% end %>
           </td>
           <td><%= day.note %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
         </tr>
         <% end %>
     </tbody>
