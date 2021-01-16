@@ -118,18 +118,26 @@
     <tfoot>
       <!-- rowapan:縦結合、colapan:横結合 -->
       <tr>
-        <td colspan="2">累計日数</td>
-        <td colspan="6">総合勤務日数</td>
-        <td colspan="1">累計在社時間</td>
-        <td rowspan="2"></td>
+        <td rowspan="3"></td>
+        <td colspan="2"></td>
+        <td colspan="6"></td>
+        <td colspan="1"><%= format("%.2f", @total_working_times.to_f) %></td>
+        <td colspan="5"></td>
+        <td rowspan="3">
+          <div class="control-label">所属長承認　未</label>
+            <div>
+              <select class="form-control">
+                <option>所属長承認</option>
+                <option>勤怠変更</option>
+                <option>残業</option>
+              </select>
+            </div>
+            <%= link_to "申請", "#", rimote: true, style: "width: 100%; margin-top: 5px;", class: "btn btn-info" %>
+        </td>
       </tr>
       <!--to_fメソッドは、文字列を浮動小数点数とみなしてFloatオブジェクトに変換する（to_iの小数点付きバージョン）-->
       <!--計算結果を小数点第２位までフォーマットしている。-->
-      <tr>
-        <td colspan="2"><%= @attendances.count %></td>
-        <td colspan="6"><%= format_basic_info(@user.work_time).to_f * @worked_sum %></td>
-        <td colspan="1"><%= format("%.2f", @total_working_times.to_f) %></td>
-      </tr>
+
     </tfoot>
   </table>
 </div>
