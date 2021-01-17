@@ -4,19 +4,17 @@
 <div>
   <table class="table table-bordered table-condensed user-table">
     <tr>
-      <td>
+      <td style="vertical-align: middle;">
         <%= link_to "◀️", user_path(date: @first_day.prev_month), class: "btn btn-info" %>
         【<%= l(@first_day, format: :middle) %>】時間管理表
         <%= link_to "▶️", user_path(date: @first_day.next_month), class: "btn btn-info" %>
       </td> 
       <td>
-        <p>
         指定勤務開始時間 : <%= format_basic_info(@user.work_time) %><br>
         指定勤務終了時間 : <%= format_basic_info(@user.work_time) %>
-        </p>
       </td>
-      <td colspan = "3">基本時間 : <%= format_basic_info(@user.basic_time) %></td>
-      <td>初日 : <%= l(@first_day, format: :short) %></td>
+      <td style="vertical-align: bottom;" colspan = "3">基本時間 : <%= format_basic_info(@user.basic_time) %></td>
+      <td style="vertical-align: bottom;">初日 : <%= l(@first_day, format: :short) %></td>
     </tr>
     <tr>
       <td>所属 : <%= @user.department.present? ? @user.department : "未所属" %></td>
