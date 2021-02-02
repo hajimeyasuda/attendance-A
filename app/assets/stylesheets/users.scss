@@ -15,6 +15,7 @@
   margin-top: -10px;
   margin-bottom: 10px;
   text-align: left;
+  padding: 0px;
 }
 
 /*　ユーザー勤怠情報テーブル */
@@ -30,7 +31,10 @@
   }
 }
 
-
+/* 勤怠編集画面 */
+.style-select {
+  width: 55%;
+}
 
 /* 入力フォーム */
 

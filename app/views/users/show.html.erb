@@ -5,10 +5,10 @@
   <table class="table table-bordered table-condensed user-table">
     <tr>
       <td style="vertical-align: middle;">
-        <%= link_to "◀️", user_path(date: @first_day.prev_month), class: "btn btn-info" %>
+        <%= link_to "←", user_path(date: @first_day.prev_month), class: "btn btn-info" %>
         【<%= l(@first_day, format: :middle) %>】時間管理表
-        <%= link_to "▶️", user_path(date: @first_day.next_month), class: "btn btn-info" %>
-      </td> 
+        <%= link_to "→", user_path(date: @first_day.next_month), class: "btn btn-info" %>
+      </td>
       <td>
         指定勤務開始時間 : <%= format_basic_info(@user.work_time) %><br>
         指定勤務終了時間 : <%= format_basic_info(@user.work_time) %>
@@ -31,7 +31,7 @@
 <div class="btn btn-users-show">
   <%= link_to "勤怠を編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-info" %>
   <%= link_to "CSV出力", "#", class: "btn btn-info" %><br>
-  <%= link_to "勤怠修正ログ（承認済)", "#", class: "btn btn-info" %>
+  <%= link_to "勤怠修正ログ（承認済)", "#", style: "width: 100%;", class: "btn btn-info" %>
 </div>
 
 <div>
@@ -125,9 +125,9 @@
           <div class="control-label">所属長承認　未</label>
             <div>
               <select class="form-control">
-                <option>所属長承認</option>
-                <option>勤怠変更</option>
-                <option>残業</option>
+                <option></option>
+                <option>上長１</option>
+                <option>上長２</option>
               </select>
             </div>
             <%= link_to "申請", "#", rimote: true, style: "width: 100%; margin-top: 5px;", class: "btn btn-info" %>

@@ -9,10 +9,10 @@
         <th>曜日</th>
         <th>出社</th>
         <th>退社</th>
+        <th>翌日</th>
         <th>在社時間</th>
         <th>備考</th>
-        <th>残業指示</th>
-        <th>指示者</th>
+        <th>指示者確認印</th>
       </tr>
     </thead>
     <tbody>
@@ -40,14 +40,20 @@
               <td><%= attendance.time_field :started_at, class: "form-control" %></td>
               <td><%= attendance.time_field :finished_at, class: "form-control" %></td>
             <% end %>
+            <td><%= check_box_tag :check1 %></td>
             <td>
               <% if day.started_at.present? && day.finished_at.present? %>
                 <%= working_times(day.started_at, day.finished_at) %>
               <% end %>
             </td>
             <td><%= attendance.text_field :note, class: "form-control" %></td>
-            <td></td>
-            <td></td>
+            <td>
+              <select class="style-select">
+                <option value=""></option>
+                <option value="">上長１</option>
+                <option value="">上長２</option>
+              </select>
+            </td>
           </tr>
         <% end %>
       <% end %>
@@ -57,7 +63,7 @@
 
 <div class="center">
   
-  <%= link_to "キャンセル", user_path(date: @first_day), class: "btn btn-lg btn-default" %>
-  <%= f.submit "編集を保存する", class: "btn btn-lg btn-primary" %>
+  <%= link_to "キャンセル", user_path(date: @first_day), class: "btn btn-lg btn-info btn-default" %>
+  <%= f.submit "編集を保存する", class: "btn btn-lg btn-info" %>
 </div>
 <% end %>
