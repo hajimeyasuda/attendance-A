@@ -12,7 +12,7 @@ module ApplicationHelper
   end
   
   def page_title(search = "")
-    params[:search] ? "検索結果" : "ユーザー一覧"
+    params[:search] ? "検索結果" : "ユーザ一覧"
   end
   
 
