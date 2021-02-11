@@ -1,12 +1,23 @@
 <div class="example">
   <li>
+    <% if current_user.admin? && !current_user?(user) %>
     <p><%= user.name %></p>
-    <span> | </span><%= link_to "削除", "#", class: "btn btn-primary" %>
-    <div class="panel panel-default collaps">
-      <a href="#link1" data-toggle="collapse" style="line-height: 25px; width: 80px; height: 40px; margin: 10px;" class="btn btn-primary">編集</a>
-    </div>
-    <div id="link1" class="collapse">
-      名前
-    </div>
+    
+      <span> | </span><%= link_to "削除", user, method: :delete,
+        data: { confirm: "削除してよろしいですか？" },
+        class: "btn btn-primary" %>
+      <div class = "panel panel-default">
+      <a data-toggle="collapse" data-parent="#accordion"
+        href="#collapse" class="btn btn-primary" style="line-height: 25px;
+        width: 80px; height: 40px; margin: 10px;">編集</a>
+      <div id="collapse" class="panel-collapse collapse">
+        <ul class="list-group">
+          <li class="list-group-item">ONE</li>
+          <li class="list-group-item">TWO</li>
+          <li class="list-group-item">THREE</li>
+        </ul>
+      </div>
+    <% end %>
+    
   </li>
 </div>

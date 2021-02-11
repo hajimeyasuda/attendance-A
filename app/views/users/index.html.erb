@@ -1,9 +1,10 @@
 <% provide(:title, 'All Users') %>
 <h1><%= page_title %></h1>
+
 <div class="import"> <%# CSVインポート %>
   <%= form_with url: import_users_path, class: "col-lg-4" do |form| %>
   <%= form.file_field:file, accept: '.csv' %><br>
-  <%= form.submit "CSVをインポート", class: "btn btn-primary", style: "width: 250px" %><br>
+  <%= form.submit "CSVをインポート", class: "btn btn-primary", style: "width: 300px" %><br>
   <h5>Example</h5>
   <% end %>
 </div>
