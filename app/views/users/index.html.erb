@@ -3,9 +3,16 @@
 
 <div class="import"> <%# CSVインポート %>
   <%= form_with url: import_users_path, class: "col-lg-4" do |form| %>
-  <%= form.file_field:file, accept: '.csv' %><br>
-  <%= form.submit "CSVをインポート", class: "btn btn-primary", style: "width: 300px" %><br>
-  <h5>Example</h5>
+    <%= form.file_field :file, accept: '.csv' %><br>
+    <%= form.submit "CSVをインポート", class: "btn btn-primary", style: "width: 300px" %><br>
+    <h5>Example</h5>
+    <% if @errors.present? %>
+      <% @errors.each do |error| %>
+        <% error[:messages].each do |message| %>
+          <li><%= "#{error[:row_num]}行目：#{message}" %></li>
+        <% end %>
+      <% end %>
+　  <% end %>
   <% end %>
 </div>
 

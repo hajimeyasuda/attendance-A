@@ -6,18 +6,24 @@
       <span> | </span><%= link_to "削除", user, method: :delete,
         data: { confirm: "削除してよろしいですか？" },
         class: "btn btn-primary" %>
-      <div class = "panel panel-default">
-      <a data-toggle="collapse" data-parent="#accordion"
-        href="#collapse" class="btn btn-primary" style="line-height: 25px;
-        width: 80px; height: 40px; margin: 10px;">編集</a>
-      <div id="collapse" class="panel-collapse collapse">
-        <ul class="list-group">
-          <li class="list-group-item">ONE</li>
-          <li class="list-group-item">TWO</li>
-          <li class="list-group-item">THREE</li>
-        </ul>
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion"
+              href="#collapse" class="btn btn-primary" style="line-height: 35px;
+              width: 90px; height: 50px; margin: 10px;">編集</a>
+            </h4>
+          </div>
+
+          <div id="collapse" class="panel-collapse collapse">
+            <div class="panel-body">
+              <%=  '#' %>
+            </div>
+          </div>
+        </div>
       </div>
+
     <% end %>
-    
   </li>
 </div>
