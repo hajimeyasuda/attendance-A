@@ -5,9 +5,9 @@
   <table class="table table-bordered table-condensed user-table">
     <tr>
       <td style="vertical-align: middle;">
-        <%= link_to "←", user_path(date: @first_day.prev_month), class: "btn btn-info" %>
+        <%= link_to "←", user_path(date: @first_day.prev_month), class: "btn btn-primary" %>
         【<%= l(@first_day, format: :middle) %>】時間管理表
-        <%= link_to "→", user_path(date: @first_day.next_month), class: "btn btn-info" %>
+        <%= link_to "→", user_path(date: @first_day.next_month), class: "btn btn-primary" %>
       </td>
       <td>
         指定勤務開始時間 : <%= format_basic_info(@user.work_time) %><br>
@@ -29,9 +29,9 @@
 
 
 <div class="btn btn-users-show">
-  <%= link_to "勤怠を編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-info" %>
-  <%= link_to "CSV出力", "#", class: "btn btn-info" %><br>
-  <%= link_to "勤怠修正ログ（承認済)", "#", style: "width: 100%;", class: "btn btn-info" %>
+  <%= link_to "勤怠を編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-primary" %>
+  <%= link_to "CSV出力", "#", class: "btn btn-primary" %><br>
+  <%= link_to "勤怠修正ログ（承認済)", "#", style: "width: 100%;", class: "btn btn-primary" %>
 </div>
 
 <div>
@@ -80,7 +80,7 @@
           end
         %>
         <tr>
-          <td><%= link_to "残業申請", "#", remote: true, class: "btn btn-info" %></td>
+          <td><%= link_to "残業申請", "#", remote: true, class: "btn btn-primary" %></td>
           <td><%= l(day.worked_on, format: :short) %></td>
           <td class="<%= css_class %>">
             <%= $days_of_the_week[day.worked_on.wday] %>
@@ -90,7 +90,7 @@
           
           <td> <!--繰り返し処理で表示している時間と本日が同じかつ出勤時間がからだったら、出勤ボタンを表示-->
             <% if btn_text = attendance_state(day) %>
-              <%= link_to "#{btn_text}", user_attendance_path(@user, day), method: :patch, class: "btn btn-info btn-attendance" %>
+              <%= link_to "#{btn_text}", user_attendance_path(@user, day), method: :patch, class: "btn btn-primary btn-attendance" %>
             <% end %>
           </td>
           
@@ -130,7 +130,7 @@
                 <option>上長２</option>
               </select>
             </div>
-            <%= link_to "申請", "#", rimote: true, style: "width: 100%; margin-top: 5px;", class: "btn btn-info" %>
+            <%= link_to "申請", "#", rimote: true, style: "width: 100%; margin-top: 5px;", class: "btn btn-primary" %>
         </td>
       </tr>
       <!--to_fメソッドは、文字列を浮動小数点数とみなしてFloatオブジェクトに変換する（to_iの小数点付きバージョン）-->

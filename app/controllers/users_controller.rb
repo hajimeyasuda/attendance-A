@@ -1,15 +1,21 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :working_index, :edit_basic_info, :update_basic_info]
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :correct_user, only: [:show, :edit, :update]
   before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info]
-  before_action :set_one_month, only: :show
+  before_action :set_one_month, only: [:working_index, :show]
 
   def index
     redirect_to(root_url) unless current_user.admin?
       @users = User.paginate(page: params[:page]).search(params[:search])
   end
-  
+
+  def working_index
+    @user = User.find_by(params[:user_params])
+    @users = User.all
+    @attendance = Attendance.find(params[:id])
+  end
+
   def import
     # fileはtmpに自動で一時保存される
     User.import(params[:file])
@@ -72,7 +78,7 @@ class UsersController < ApplicationController
   
   
     def user_params
-      params.require(:user).permit(:name, :email, :department, :employee_number, :uid,
+      params.require(:user).permit(:name, :email, :employee_number, :uid,
                                    :basic_work_time, :designated_work_atart_time,
                                    :designated_work_end_time, :superior, :admin,
                                    :password, :password_confirmation)

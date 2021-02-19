@@ -6,32 +6,43 @@
     <%= form.file_field :file, accept: '.csv' %><br>
     <%= form.submit "CSVをインポート", class: "btn btn-primary", style: "width: 300px" %><br>
     <h5>Example</h5>
-    <% if @errors.present? %>
-      <% @errors.each do |error| %>
-        <% error[:messages].each do |message| %>
-          <li><%= "#{error[:row_num]}行目：#{message}" %></li>
-        <% end %>
-      <% end %>
-　  <% end %>
   <% end %>
 </div>
 
 <%= will_paginate %>
+<div class="col-md-10 col-md-offset-1">
+  <table class="table table-condensed table-hover" id="table-users">
 
-<div class="row">
-  <div class="col-md-12">
-  <% unless @users.empty? %>
-    <ul class="users">
-      <%= render @users %>
-    </ul>
-  <% else %>
-    <p class="search">
-      ユーザが見つかりませんでした。<br>
-      探しているユーザー名を確認してください。
-    </p>
-  <% end %>
-  </div>
+    <% @users.each do |user| %>
+      <tr>
+        <% if current_user.admin? && !current_user?(user) %>
+          <td><%= user.name %><br>
+            <span> | </span><%= link_to "削除", user, method: :delete, class: "btn btn-md btn-primary",
+              data: { confirm: "削除してよろしいですか？" } %></br>
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <button type="button" class="btn btn-primary btn-lg"
+                     data-toggle="collapse" data-target="#collapse<%= user.id %>">
+                     編集</button>
+                  </h4>
+                </div>
+
+                <div id="collapse<%= user.id %>" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <%=  %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
 </div>
+
 
 <%= will_paginate %>
 
