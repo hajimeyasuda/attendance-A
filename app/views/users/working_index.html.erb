@@ -11,8 +11,8 @@
       <% @users.each do |user| %>
         <tr>
             <% if @attendance.started_at.present? && @attendance.finished_at.nil? %>
-              <td><%= employee_number %></td>
-              <td><%= name %></td>
+              <td><%= @user.attendance.employee_number %></td>
+              <td><%= @user.attendance.name %></td>
             <% end %>
         </tr>
       <% end %>
